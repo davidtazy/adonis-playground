@@ -1,0 +1,11 @@
+{
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "[edge]":{
+        "editor.defaultFormatter": "adonisjs.vscode-edge",
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    }
+}
