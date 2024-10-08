@@ -4,7 +4,8 @@
     "jripouteau.adonis-vscode-extension",
     "jripouteau.japa-vscode",
     "rvest.vs-code-prettier-eslint",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "MrAwesomeRocks.lipsum-generator"
   ],
   "unwantedRecommendations": [
         // Extensions you do not want to use (optional)
