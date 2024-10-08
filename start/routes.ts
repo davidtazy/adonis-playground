@@ -11,14 +11,19 @@ import { Exception } from '@adonisjs/core/exceptions'
 import app from '@adonisjs/core/services/app'
 import router from '@adonisjs/core/services/router'
 import fs from 'node:fs/promises'
+import { MarkdownFile } from '@dimerapp/markdown'
+import { toHtml } from '@dimerapp/markdown/utils'
 
 router.on('/').render('pages/home').as('home')
 router
   .get('/movies/:slug', async (ctx) => {
-    const url = app.makeURL(`resources/movies/${ctx.params.slug}.html`)
+    const url = app.makeURL(`resources/movies/${ctx.params.slug}.md`)
 
     try {
-      const movie = await fs.readFile(url, 'utf8')
+      const file = await fs.readFile(url, 'utf8')
+      const md = new MarkdownFile(file)
+      await md.process()
+      const movie = toHtml(md).contents
       ctx.view.share({ movie })
     } catch (error) {
       throw new Exception(`could not find movie called ${ctx.params.slug}`, {
