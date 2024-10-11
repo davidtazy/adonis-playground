@@ -19,8 +19,8 @@
     <nav>
       <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('home')}}>Home</a>
     </nav>
-    <h1>{{md.frontmatter.title}}</h1>
-    {{{ movie }}}
+    <h1>{{movie.title}}</h1>
+    {{{ movie.abstract }}}
     {{inspect(movie)}}
   </div>
 </body>
