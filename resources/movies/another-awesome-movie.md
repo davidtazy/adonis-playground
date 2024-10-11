@@ -1,4 +1,7 @@
-# Another awesome movie
+---
+title: Another awesome movie
+summary: Lorem ipsum dolor
+---
 
 
 Lorem ipsum dolor sit amet, qui aute ex do do ea amet nulla ad consectetur

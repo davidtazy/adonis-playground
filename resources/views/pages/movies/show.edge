@@ -16,9 +16,8 @@
     <div class="max-w-3xl mx-auto mt-6">
     <nav>
       <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('home')}}>Home</a>
-      <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('movies.show',{slug:'my-awesome-movie'})}}>my awesome movie</a>
-      <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('movies.show',{slug:'another-awesome-movie'})}}>another awesome movie</a>
     </nav>
+    <h1>{{md.frontmatter.title}}</h1>
    {{{ movie }}}
    {{inspect(movie)}}
    </div>

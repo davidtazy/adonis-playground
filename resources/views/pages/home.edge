@@ -14,12 +14,19 @@
   </head>
   <body >
    <div class="max-w-3xl mx-auto mt-6">
-     <nav>
-      <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('home')}}>Home</a>
-      <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('movies.show',{slug:'my-awesome-movie'})}}>my awesome movie</a>
-      <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('movies.show',{slug:'another-awesome-movie'})}}>another awesome movie</a>
-    </nav>
+     
    <h1 class="text-red-500" >It Works !!</h1>
+
+   {{ inspect(slugs) }}
+
+   <ul>
+    @each(movie in movies)
+    <li>
+      <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('movies.show',{slug:movie.slug})}}>{{ movie.title }}</a>
+      </li>
+      @end
+   </ul>
+
    </div>
   </body>
 </html>
