@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>
-      AdonisJS - Movies
-    </title>
 
-   
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>
+    AdonisJS - Movies
+  </title>
 
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-  </head>
-  <body >
-    <div class="max-w-3xl mx-auto mt-6">
+
+
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body>
+  <div class="max-w-3xl mx-auto mt-6">
     <nav>
       <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('home')}}>Home</a>
     </nav>
     <h1>{{md.frontmatter.title}}</h1>
-   {{{ movie }}}
-   {{inspect(movie)}}
-   </div>
-  </body>
+    {{{ movie }}}
+    {{inspect(movie)}}
+  </div>
+</body>
+
 </html>

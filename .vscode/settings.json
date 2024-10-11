@@ -3,7 +3,15 @@
     "editor.formatOnPaste": true,
     "editor.formatOnSave": true,
     "[edge]":{
-        "editor.defaultFormatter": "adonisjs.vscode-edge",
+        "editor.defaultFormatter": "vscode.html-language-features",
+        "editor.formatOnSave": true
+,       "editor.formatOnPaste": true
+
+    },
+    "[json]":{
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        "editor.formatOnSave": true     ,
+        "editor.formatOnPaste": true
     },
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit"
