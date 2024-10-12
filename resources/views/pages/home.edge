@@ -20,7 +20,7 @@
   {{ inspect({globalExample})}}
 
   <div class="fixed bottom-0 right-3 flex gap-3">
-    <form action="{{route('redis.flush')}}" method="POST">
+    <form action="{{route('redis.flush',{},{qs:{ _method:'DELETE'}})}}" method="POST">
       {{csrfField()}}
       @button({type:'submit',class:'rounded-b-none'})
       Flush Redis DB

@@ -19,5 +19,5 @@ router
   .where('slug', router.matchers.slug())
 
 // flush is first because it would be treated as a valid slug (route are tested in order)
-router.post('/redis/flush', [RedisController, 'flush']).as('redis.flush')
+router.delete('/redis/flush', [RedisController, 'flush']).as('redis.flush')
 router.delete('/redis/:slug', [RedisController, 'destroy']).as('redis.destroy')
