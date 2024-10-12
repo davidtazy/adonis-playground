@@ -5,16 +5,7 @@ disabled:opacity-50 disabled:pointer-events-none bg-slate-950 hover:bg-slate-950
 
 @let(nodeName= $props.has('href') ? 'a':'button')
 
-@if ($props.has('href'))
 
-<a {{ $props.merge({class:[className]}).toAttrs() }}>
+<{{ nodeName}} {{ $props.merge({class:[className]}).toAttrs() }}>
     {{ await $slots.main() }}
-</a>
-
-@else
-
-<button {{ $props.merge({class:[className]}).toAttrs() }}>
-    {{ await $slots.main() }}
-</button>
-
-@endif
+</{{ nodeName }}>
