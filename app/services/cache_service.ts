@@ -1,4 +1,6 @@
-class CacheService {
+import redis from '@adonisjs/redis/services/main'
+
+class InMemoryCacheService {
   #store: Record<string, any> = {}
 
   has(key: string) {
@@ -14,9 +16,32 @@ class CacheService {
   }
 
   delete(key: string) {
-    delete this.#store[key]
+    return delete this.#store[key]
   }
 }
 
-const cache = new CacheService()
+class RedisCacheService {
+  async has(...keys: string[]) {
+    return redis.exists(keys)
+  }
+
+  async get(key: string) {
+    const value = await redis.get(key)
+    return value && JSON.parse(value)
+  }
+
+  async set(key: string, value: any) {
+    return redis.set(key, JSON.stringify(value))
+  }
+
+  async delete(...keys: string[]) {
+    redis.del(keys)
+  }
+
+  async flushDB() {
+    redis.flushdb()
+  }
+}
+
+const cache = new RedisCacheService()
 export default cache
