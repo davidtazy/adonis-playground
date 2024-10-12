@@ -27,14 +27,7 @@
 
       @let(isFirst = index===0)
 
-      <li class="{{
-        html.classNames([
-          'p-4 border',
-           { 
-            'border-blue-500':isFirst
-          }
-        ])
-      }}">
+      <li {{ html.attrs({ id:movie.slug, class:[ 'p-4 border' , { 'border-blue-500' :isFirst } ] }) }}>
 
         <a class="text-blue-500 font-bold hover:text-blue-700 underline" href={{
           route('movies.show',{slug:movie.slug})}}>{{
