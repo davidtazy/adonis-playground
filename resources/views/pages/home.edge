@@ -20,8 +20,22 @@
     <h1 class="text-red-500">It Works !!</h1>
 
     <ul class="flex flex-col gap-4">
-      @each(movie in movies)
-      <li>
+
+
+      @each((movie,index) in movies)
+
+
+      @let(isFirst = index===0)
+
+      <li class="{{
+        html.classNames([
+          'p-4 border',
+           { 
+            'border-blue-500':isFirst
+          }
+        ])
+      }}">
+
         <a class="text-blue-500 font-bold hover:text-blue-700 underline" href={{
           route('movies.show',{slug:movie.slug})}}>{{
           movie.title }}</a>
