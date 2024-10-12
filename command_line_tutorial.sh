@@ -44,3 +44,7 @@ node ace make:controller redis
 
 # share global (option:true)
 node ace make:preload globals data flow
+
+# icon set
+npm i edge-iconify
+npm i @iconify-json/ph

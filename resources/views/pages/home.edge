@@ -23,6 +23,7 @@
     <form action="{{route('redis.flush',{},{qs:{ _method:'DELETE'}})}}" method="POST">
       {{csrfField()}}
       @button({type:'submit',class:'rounded-b-none'})
+      @svg('ph:trash-fill',{class:'mr-2'})
       Flush Redis DB
       @end
     </form>
