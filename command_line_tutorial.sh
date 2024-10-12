@@ -37,3 +37,8 @@
 # run redis server
 docker run --name redis-dev -p 6379:6379 -d redis:latest
 
+# create redis controller to delete slug or flush redis cache
+node ace make:controller redis
+
+
+

@@ -7,6 +7,7 @@
 |
 */
 
+const RedisController = () => import('#controllers/redis_controller')
 import router from '@adonisjs/core/services/router'
 const MoviesController = () => import('#controllers/movies_controller')
 
@@ -16,3 +17,7 @@ router
   .get('/movies/:slug', [MoviesController, 'show'])
   .as('movies.show')
   .where('slug', router.matchers.slug())
+
+// flush is first because it would be treated as a valid slug (route are tested in order)
+router.delete('/redis/flush', [RedisController, 'flush']).as('redis.flush')
+router.delete('/redis/:slug', [RedisController, 'destroy']).as('redis.destroy')
