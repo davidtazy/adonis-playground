@@ -16,11 +16,20 @@
 
 <body>
   <div class="max-w-3xl mx-auto mt-6">
-    <nav>
-      <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('home')}}>Home</a>
-    </nav>
+
+    @include("partials/nav")
+
     <h1>{{movie.title}}</h1>
-    {{{ movie.abstract }}}
+
+    @if (movie.abstract)
+    <div class="my-8 bg-slate-100 rounded-xl p-8">
+      {{{ movie.abstract }}}
+    </div>
+    @else
+    No Abstract
+    @end
+    @endif
+
     {{inspect(movie)}}
   </div>
 </body>

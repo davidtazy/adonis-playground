@@ -19,16 +19,27 @@
 
     <h1 class="text-red-500">It Works !!</h1>
 
-    <ul>
+    <ul class="flex flex-col gap-4">
       @each(movie in movies)
       <li>
-        <a class="text-blue-500 hover:text-blue-700 underline" href={{ route('movies.show',{slug:movie.slug})}}>{{
+        <a class="text-blue-500 font-bold hover:text-blue-700 underline" href={{
+          route('movies.show',{slug:movie.slug})}}>{{
           movie.title }}</a>
+        <p class="text-slate-600">
+          {{
+          truncate(
+          movie.summary,
+          50,
+          {completeWords:true}
+          )
+          }}
+        </p>
       </li>
       @end
     </ul>
 
     {{ inspect(movies) }}
+    {{ inspect(state) }}
 
   </div>
 </body>
