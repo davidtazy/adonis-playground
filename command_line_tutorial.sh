@@ -67,3 +67,15 @@ node ace make:migration movies
 node ace make:migration cineasts
 node ace make:migration crew_movies
 node ace make:migration cast_movies
+
+# to see the migration status
+node ace migration:status
+
+# to execute pending migration
+node ace migration:run
+
+# install pg client
+sudo apt install postgresql-client
+
+# connect to the db
+psql -h localhost -U myuser -d mydatabase # enter the password the exectute the command '\dt'  to list tables
