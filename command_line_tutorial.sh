@@ -91,3 +91,16 @@ node ace make:seeder start
 node ace db:seed # error if tables already filled
 node ace migration:refresh # remove all tables and recreate them
 node ace db:seed
+
+# create factory and fake seeders
+node ace make:factory cineast
+node ace make:seeder fake
+node ace db:seed
+
+node ace make:factory movie
+node ace make:factory user
+
+node ace migration:refresh
+
+node ace db:seed --files  ./database/seeders/fake_seeder.ts
+node ace db:seed --files  ./database/seeders/fake_seeder.ts
