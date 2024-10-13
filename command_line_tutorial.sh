@@ -48,3 +48,15 @@ node ace make:preload globals data flow
 # icon set
 npm i edge-iconify
 npm i @iconify-json/ph
+
+#postgres db
+docker run --name my-postgres \
+  -e POSTGRES_USER=myuser \
+  -e POSTGRES_PASSWORD=mysecretpassword \
+  -e POSTGRES_DB=mydatabase \
+  -v /path/to/your/local/directory:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  -d postgres:latest
+
+# add posgres driver
+node ace configure @adonisjs/lucid --db=postgresv #update files =true

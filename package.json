@@ -32,7 +32,7 @@
     "#config/*": "./config/*.js"
   },
   "devDependencies": {
-    "@adonisjs/assembler": "^7.8.1",
+    "@adonisjs/assembler": "^7.8.2",
     "@adonisjs/eslint-config": "^2.0.0-beta.6",
     "@adonisjs/prettier-config": "^1.4.0",
     "@adonisjs/tsconfig": "^1.4.0",
@@ -56,7 +56,7 @@
   "dependencies": {
     "@adonisjs/auth": "^9.2.3",
     "@adonisjs/core": "^6.12.1",
-    "@adonisjs/lucid": "^21.2.0",
+    "@adonisjs/lucid": "^21.3.0",
     "@adonisjs/redis": "^9.1.0",
     "@adonisjs/session": "^7.4.2",
     "@adonisjs/shield": "^8.1.1",
@@ -69,6 +69,7 @@
     "edge-iconify": "^2.0.1",
     "edge.js": "^6.0.2",
     "luxon": "^3.5.0",
+    "pg": "^8.13.0",
     "reflect-metadata": "^0.2.2"
   },
   "hotHook": {
