@@ -85,3 +85,9 @@ psql -h localhost -U myuser -d mydatabase # enter the password the exectute the 
  node ace make:model movie_statuses
  node ace make:model --help
  node ace make:model cineasts
+
+# create seeds
+node ace make:seeder start
+node ace db:seed # error if tables already filled
+node ace migration:refresh # remove all tables and recreate them
+node ace db:seed
