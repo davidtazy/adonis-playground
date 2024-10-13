@@ -60,3 +60,10 @@ docker run --name my-postgres \
 
 # add posgres driver
 node ace configure @adonisjs/lucid --db=postgresv #update files =true
+
+node ace make:migration roles
+node ace make:migration movie_statuses
+node ace make:migration movies
+node ace make:migration cineasts
+node ace make:migration crew_movies
+node ace make:migration cast_movies
