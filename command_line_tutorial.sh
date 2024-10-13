@@ -79,3 +79,9 @@ sudo apt install postgresql-client
 
 # connect to the db
 psql -h localhost -U myuser -d mydatabase # enter the password the exectute the command '\dt'  to list tables
+
+# create models
+ node ace make:model roles
+ node ace make:model movie_statuses
+ node ace make:model --help
+ node ace make:model cineasts
