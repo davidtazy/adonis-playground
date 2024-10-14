@@ -110,3 +110,11 @@ node ace make:migration alter_cast_movies_add_sort_order --alter
 node ace migration:status
 node ace migration:run #create batch 2
 #node ace migration:rollback will remove batch2
+
+
+node ace repl
+# > await loadDb()
+# > await loadModels()
+# > (await db.rawQuery('SELECT * FROM movies WHERE ?? = ?',['id',1])).rows
+# > (await db.rawQuery('SELECT * FROM movies WHERE :column: = :value', {column:'id',value:3}  )).rows
+# > await models.movie.query().whereRaw('?? = ?',['id',1]).pojo()
