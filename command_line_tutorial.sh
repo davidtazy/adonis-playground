@@ -104,3 +104,9 @@ node ace migration:refresh
 
 node ace db:seed --files  ./database/seeders/fake_seeder.ts
 node ace db:seed --files  ./database/seeders/fake_seeder.ts
+
+# alter database
+node ace make:migration alter_cast_movies_add_sort_order --alter
+node ace migration:status
+node ace migration:run #create batch 2
+#node ace migration:rollback will remove batch2
