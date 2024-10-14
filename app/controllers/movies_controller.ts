@@ -3,8 +3,18 @@ import type { HttpContext } from '@adonisjs/core/http'
 
 export default class MoviesController {
   async index({ view }: HttpContext) {
-    const movies = await Movie.all()
-    return view.render('pages/home', { movies })
+    const comingSoon = await Movie.query()
+      .withScopes((scope) => scope.notReleased())
+      .whereNotNull('releasedAt')
+      .orderBy('releasedAt', 'asc')
+      .limit(3)
+
+    const recentlyReleased = await Movie.query()
+      .withScopes((scope) => scope.released())
+      .orderBy('releasedAt', 'desc')
+      .limit(9)
+
+    return view.render('pages/home', { recentlyReleased, comingSoon })
   }
 
   async show({ view, params }: HttpContext) {

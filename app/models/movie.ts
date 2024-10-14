@@ -51,6 +51,30 @@ export default class Movie extends BaseModel {
     )
   })
 
+  static comingSoon = scope((query) => {
+    query.where(
+      (
+        group // use group to have a futur proof and
+      ) =>
+        group
+          .where('statusId', MovieStatuses.RELEASED)
+          .whereNotNull('releasedAt')
+          .where('releasedAt', '>=', DateTime.now().toSQL())
+    )
+  })
+
+  static notReleased = scope((query) => {
+    query.where(
+      (
+        group // use group to have a futur proof and
+      ) =>
+        group
+          .whereNot('statusId', MovieStatuses.RELEASED)
+          .orWhereNull('releasedAt')
+          .orWhere('releasedAt', '>', DateTime.now().toSQL())
+    )
+  })
+
   /*
   SELECT * FROM movies
   WHERE
