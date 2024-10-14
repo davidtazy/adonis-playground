@@ -125,3 +125,6 @@ node ace repl
 # > await models.movie.query().withScopes(scope => scope.released()).pojo()
 # > await models.movie.query().withScopes(scope => scope.released()).where('title','Loving You').pojo()
 
+node ace migration:reset
+node ace migration:run
+node ace db:seed
