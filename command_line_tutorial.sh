@@ -118,3 +118,10 @@ node ace repl
 # > (await db.rawQuery('SELECT * FROM movies WHERE ?? = ?',['id',1])).rows
 # > (await db.rawQuery('SELECT * FROM movies WHERE :column: = :value', {column:'id',value:3}  )).rows
 # > await models.movie.query().whereRaw('?? = ?',['id',1]).pojo()
+
+node ace db:seed --files=database/seeders/fake_seeder_released_movies.ts
+node ace repl
+# > await loadModels()
+# > await models.movie.query().withScopes(scope => scope.released()).pojo()
+# > await models.movie.query().withScopes(scope => scope.released()).where('title','Loving You').pojo()
+
