@@ -10,7 +10,6 @@ export const MovieFactory = factory
       writerId: 1,
       directorId: 2,
       title: faker.music.songName(),
-      slug: faker.string.uuid(),
       summary: faker.lorem.sentence(),
       abstract: faker.lorem.sentences({ min: 4, max: 6 }),
       posterUrl: faker.image.urlPicsumPhotos(),

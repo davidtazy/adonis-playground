@@ -130,3 +130,9 @@ node ace migration:run
 node ace db:seed
 
 node ace migration:refresh --seed
+
+node ace repl
+# > await loadModels()
+# > await models.movie.create({statusId:1,writerId:1,directorId:1,title:'Tossing & Turning'})
+# > await models.movie.create({statusId:1,writerId:1,directorId:1,title:'Tossing & Turning'})
+# should add the suffix '-1' to ensure slug unicity
