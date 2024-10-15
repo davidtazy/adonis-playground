@@ -159,3 +159,10 @@ node ace repl
 
 #  await user.profile.delete() // OK
 #  await user.delete()         // OK
+
+
+#> const movie=await models.movie.findOrFail(1)
+#> await movie.related('director').query().pojo()
+#> await movie.load('director')
+#> movie.director.fullName
+
