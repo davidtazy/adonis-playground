@@ -154,3 +154,8 @@ node ace repl
 # > (js) users.length
 # 5
 # > (js) users.at(4).profile.description
+
+#  await user.delete()  // fail because of the foreign key of profile
+
+#  await user.profile.delete() // OK
+#  await user.delete()         // OK
