@@ -139,3 +139,18 @@ node ace repl
 
 
  node ace migration:refresh --seed
+
+node ace repl
+# > await loadModels()
+# > const user= await models.user.findOrFail(1)
+# > await user.related('profile').query().pojo() // show the linked profile
+# > await user.load('profile')  // profile is 'lazy loaded'
+# > user.profile.description  // print the description
+
+# > const user2 = await models.user.query().where('id',1).preload('profile').firstOrFail() //eager loading
+# >  user.profile.description  // print the description
+
+# > const users = await models.user.query().preload('profile') //eager loading all users
+# > (js) users.length
+# 5
+# > (js) users.at(4).profile.description
