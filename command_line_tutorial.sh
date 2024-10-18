@@ -167,3 +167,5 @@ node ace repl
 #> movie.director.fullName
 
  node ace make:controller writers index show
+
+ node ace migration:refresh --seed
