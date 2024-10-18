@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, computed, hasMany } from '@adonisjs/lucid/orm'
+import { BaseModel, column, computed, hasMany, manyToMany } from '@adonisjs/lucid/orm'
 import Movie from './movie.js'
-import type { HasMany } from '@adonisjs/lucid/types/relations'
+import type { HasMany, ManyToMany } from '@adonisjs/lucid/types/relations'
 
 export default class Cineast extends BaseModel {
   @column({ isPrimary: true })
@@ -38,4 +38,21 @@ export default class Cineast extends BaseModel {
     foreignKey: 'writerId',
   })
   declare moviesWritten: HasMany<typeof Movie>
+
+  @manyToMany(() => Movie, {
+    pivotTable: 'crew_movies',
+    pivotTimestamps: true,
+    localKey: 'id', // actual default lucid value, could be removed
+    relatedKey: 'id', // actual default lucid value, could be removed
+    pivotForeignKey: 'movie_id', // actual default lucid value, could be removed
+    pivotRelatedForeignKey: 'cineast_id', // actual default lucid value, could be removed
+  })
+  declare crewMovies: ManyToMany<typeof Movie>
+
+  @manyToMany(() => Movie, {
+    pivotTable: 'cast_movies',
+    pivotColumns: ['character_name', 'sort_order'],
+    pivotTimestamps: true,
+  })
+  declare castMovies: ManyToMany<typeof Movie>
 }

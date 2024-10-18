@@ -1,9 +1,9 @@
 import MovieStatuses from '#enums/movie_statuses'
-import { BaseModel, beforeCreate, belongsTo, column, scope } from '@adonisjs/lucid/orm'
+import { BaseModel, beforeCreate, belongsTo, column, manyToMany, scope } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 import string from '@adonisjs/core/helpers/string'
 import MovieStatus from './movie_status.js'
-import type { BelongsTo } from '@adonisjs/lucid/types/relations'
+import type { BelongsTo, ManyToMany } from '@adonisjs/lucid/types/relations'
 import Cineast from './cineast.js'
 
 export default class Movie extends BaseModel {
@@ -57,6 +57,23 @@ export default class Movie extends BaseModel {
     foreignKey: 'writerId',
   })
   declare writer: BelongsTo<typeof Cineast>
+
+  @manyToMany(() => Cineast, {
+    pivotTable: 'crew_movies',
+    pivotTimestamps: true,
+    localKey: 'id', // actual default lucid value, could be removed
+    relatedKey: 'id', // actual default lucid value, could be removed
+    pivotForeignKey: 'movie_id', // actual default lucid value, could be removed
+    pivotRelatedForeignKey: 'cineast_id', // actual default lucid value, could be removed
+  })
+  declare crewMembers: ManyToMany<typeof Cineast>
+
+  @manyToMany(() => Cineast, {
+    pivotTable: 'cast_movies',
+    pivotColumns: ['character_name', 'sort_order'],
+    pivotTimestamps: true,
+  })
+  declare castMembers: ManyToMany<typeof Cineast>
 
   @beforeCreate()
   static async slugify(movie: Movie) {
