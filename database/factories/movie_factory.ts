@@ -11,7 +11,7 @@ export const MovieFactory = factory
       title: faker.music.songName(),
       summary: faker.lorem.sentence(),
       abstract: faker.lorem.sentences({ min: 4, max: 6 }),
-      posterUrl: faker.image.urlPicsumPhotos(),
+      posterUrl: faker.image.urlPicsumPhotos({ width: 400, height: 200 }),
       releasedAt: null,
     }
   })
