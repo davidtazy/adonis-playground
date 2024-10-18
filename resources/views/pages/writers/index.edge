@@ -1,0 +1,21 @@
+@layout()
+<h1>Writers</h1>
+
+<ul>
+    @each(writer in writers)
+    <li>
+        <p>
+            <a class="text-blue-500 hover:text-blue-700 underline" href="{{route('writers.show',{id:writer.id})}}">
+                {{ writer.fullName }}
+            </a>
+            <span class="text-slate-400">
+                ( {{writer.$extras.releasedCount}} released, {{writer.$extras.notReleasedCount}} not released )
+            </span>
+        </p>
+    </li>
+    @endeach
+</ul>
+
+{{ inspect(writers[0])}}
+
+@end

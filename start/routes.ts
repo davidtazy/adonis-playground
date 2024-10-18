@@ -7,6 +7,7 @@
 |
 */
 
+const WritersController = () => import('#controllers/writers_controller')
 import router from '@adonisjs/core/services/router'
 
 const RedisController = () => import('#controllers/redis_controller')
@@ -22,6 +23,9 @@ router
 
 router.get('/directors/:id', [DirectorsController, 'show']).as('directors.show')
 router.get('/directors', [DirectorsController, 'index']).as('directors.index')
+
+router.get('/writers/:id', [WritersController, 'show']).as('writers.show')
+router.get('/writers', [WritersController, 'index']).as('writers.index')
 
 // flush is first because it would be treated as a valid slug (route are tested in order)
 router.delete('/redis/flush', [RedisController, 'flush']).as('redis.flush')

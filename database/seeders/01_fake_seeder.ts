@@ -22,6 +22,7 @@ export default class extends BaseSeeder {
     await MovieFactory.tap((row, { faker }) => {
       const movie = movies[index]
       const released = DateTime.now().set({ year: movie.releaseYear })
+
       row.statusId = MovieStatuses.RELEASED
       row.directorId = cineasts.at(Math.floor(Math.random() * cineasts.length))!.id
       row.writerId = cineasts.at(Math.floor(Math.random() * cineasts.length))!.id
@@ -36,8 +37,9 @@ export default class extends BaseSeeder {
       index++
     }).createMany(movies.length)
 
-    await MovieFactory.with('writer').with('director').apply('released').createMany(3)
-    await MovieFactory.with('writer').with('director').apply('releasingSoon').createMany(2)
-    await MovieFactory.with('writer').with('director').apply('postProduction').createMany(1)
+    await MovieFactory.with('director').with('writer').createMany(3)
+    await MovieFactory.with('director').with('writer').apply('released').createMany(2)
+    await MovieFactory.with('director').with('writer').apply('releasingSoon').createMany(2)
+    await MovieFactory.with('director').with('writer').apply('postProduction').createMany(2)
   }
 }

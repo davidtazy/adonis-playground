@@ -166,3 +166,4 @@ node ace repl
 #> await movie.load('director')
 #> movie.director.fullName
 
+ node ace make:controller writers index show
