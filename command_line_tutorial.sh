@@ -169,3 +169,31 @@ node ace repl
  node ace make:controller writers index show
 
  node ace migration:refresh --seed
+
+
+#> await loadModels()
+#> const user = await models.user.create({fullName:'John doe',email:'qQk0a@example.com',password:'1234'})
+#> await user.load('profile')
+#> await user.related('profile').create({description:'lorem ipsum'})
+#> await user.load('profile')
+#> user.profile.description
+#> await user.profile.delete()
+#> .exit
+#> const user= await models.user.findByOrFail('email','qQk0a@example.com')
+#> const profile=new models.profile()
+#> profile.description='lorem ipsum'
+#> await user.related('profile').save(profile)
+#> await user.load('profile')
+#> user.profile.description
+#> user.profile.delete()
+
+
+#> const user= await models.user.findByOrFail('email','qQk0a@example.com')
+#> const profile=new models.profile()
+#> profile.description='lorem ipsum'
+#> await profile.related('user').associate(user)
+#> await user.load('profile')
+#> user.profile.description
+
+#> const movie = await models.movie.create({title:'Tossing & Turning',directorId:1,writerId:1,statusId:1}) 
+#> await movie.related('castMembers').attach([1,2,3])
