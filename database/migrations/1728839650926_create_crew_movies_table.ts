@@ -14,6 +14,7 @@ export default class extends BaseSchema {
         .onDelete('CASCADE')
       table.integer('movie_id').unsigned().references('movies.id').notNullable().onDelete('CASCADE')
       table.string('title', 100).notNullable()
+      table.integer('sort_order').notNullable().defaultTo(0)
       table.timestamp('created_at').notNullable()
       table.timestamp('updated_at').notNullable()
     })

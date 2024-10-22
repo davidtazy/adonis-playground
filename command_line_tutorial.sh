@@ -199,3 +199,5 @@ node ace repl
 #> await movie.related('castMembers').attach([1,2,3])
 
 #> node ace migration:refresh --seed
+
+#> node ace migration:refresh --seed
