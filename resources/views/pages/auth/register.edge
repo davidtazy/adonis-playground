@@ -11,19 +11,31 @@
 
     <form method="POST" action="{{route('auth.register.store')}}" class="flex flex-col gap-4 ">
         {{ csrfField()}}
+
+        {{ inspect(flashMessages.all())}}
         <label class="flex flex-col">
             <span class="text-xs font-bold">Full Name</span>
             <input type="text" name="fullName" />
+            @inputError('fullName')
+            <p class="text-xs text-red-500">{{$messages.join(', ')}}</p>
+            @end
         </label>
 
         <label class="flex flex-col">
             <span class="text-xs font-bold">Email</span>
             <input type="email" name="email" />
+
+            @inputError('email')
+            <p class="text-xs text-red-500">{{$messages.join(', ')}}</p>
+            @end
         </label>
 
         <label class="flex flex-col">
             <span class="text-xs font-bold">Password</span>
             <input type="password" name="password" />
+            @inputError('password')
+            <p class="text-xs text-red-500">{{$messages.join(', ')}}</p>
+            @end
         </label>
 
         @button({type:'submit}'})

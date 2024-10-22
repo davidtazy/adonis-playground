@@ -8,13 +8,11 @@ export default class RegisterController {
   }
 
   async store({ request, response }: HttpContext) {
-    // 1. Grab the data from the request
-    const data = request.only(['fullName', 'email', 'password'])
+    // 1. Grab the data from the request and validate
+    const data = await request.validateUsing(registerValidator)
 
     // 2. Create the user
-    const validatorData = await registerValidator.validate(data)
-    const user = await User.create(validatorData)
-    console.log(user.serialize())
+    const user = await User.create(data)
 
     // 3. Login the user
     //data['password'] = await Hash.make(data['password'])
