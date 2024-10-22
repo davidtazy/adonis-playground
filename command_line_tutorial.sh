@@ -201,3 +201,5 @@ node ace repl
 #> node ace migration:refresh --seed
 
 #> node ace migration:refresh --seed
+
+#> node ace make:controller auth/register -s
