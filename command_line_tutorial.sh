@@ -205,3 +205,5 @@ node ace repl
 #> node ace make:controller auth/register -s
 
 #> node ace make:validator auth
+
+#>  node ace make:controller auth/login show store -s

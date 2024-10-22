@@ -1,0 +1,37 @@
+@layout()
+
+
+<div class="flex flex-col items-center mt-4">
+
+    <h1>Login</h1>
+
+    @card( {class:'max-w-md'})
+
+
+
+    <form method="POST" action="{{route('auth.login.store')}}" class="flex flex-col gap-4 ">
+        {{ csrfField()}}
+
+
+        @!form.input({
+        label:"Email",
+        name:"email",
+        type:"email"
+        })
+
+        @!form.input({
+        label:"Password",
+        name:"password",
+        type:"password"
+        })
+
+        @button({type:'submit}'})
+        Login
+        @end
+    </form>
+
+    @end
+</div>
+
+{{ inspect(flashMessages.all())}}
+@end
