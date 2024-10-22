@@ -197,3 +197,5 @@ node ace repl
 
 #> const movie = await models.movie.create({title:'Tossing & Turning',directorId:1,writerId:1,statusId:1}) 
 #> await movie.related('castMembers').attach([1,2,3])
+
+#> node ace migration:refresh --seed
