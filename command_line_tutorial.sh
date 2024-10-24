@@ -216,3 +216,5 @@ node ace repl
 
 #>  node ace make:migration remember_me_tokens
 #>  node ace migration:run
+
+#> node ace make:middleware admin ❯ Under which stack you want to register the middleware? · named

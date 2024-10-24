@@ -50,3 +50,14 @@ router
   })
   .prefix('/auth')
   .as('auth')
+
+router
+  .group(() => {
+    router
+      .get('/', (ctx) => {
+        return `you are here ${ctx.auth.user?.fullName} as role id ${ctx.auth.user?.roleId}`
+      })
+      .as('index')
+  })
+  .prefix('admin')
+  .use(middleware.admin())

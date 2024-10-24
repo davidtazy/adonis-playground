@@ -16,6 +16,10 @@
         <p role="alert" class="text-red-500 bg-red-50 p-3  rounded text-xs">{{$message}}</p>
         @end
 
+        @error('E_UNAUTHORIZED_ACCESS')
+        <p role="alert" class="text-red-500 bg-red-50 p-3  rounded text-xs">{{$message}}</p>
+        @end
+
         @!form.input({
         label:"Email",
         name:"email",
