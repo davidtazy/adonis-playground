@@ -6,7 +6,12 @@
     </div>
 
     @if(auth.user)
-    {{auth.user.fullName}}
+
+    <form method="POST" action="{{route('auth.logout')}}">
+        {{ csrfField() }}
+        <button type="submit" class="text-xs"> Logout {{ auth.user.fullName }}</button>
+    </form>
+
     @else
 
     <div>
