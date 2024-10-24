@@ -5,9 +5,14 @@
         <a href={{ route('writers.index')}}>Writers</a>
     </div>
 
+    @if(await auth.check())
+    {{auth.user.fullName}}
+    @else
+
     <div>
         <a href={{ route('auth.login.show')}}>Login</a>
         <a href={{ route('auth.register.show')}}>Register</a>
     </div>
+    @endif
 
 </nav>

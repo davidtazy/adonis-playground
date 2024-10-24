@@ -7,7 +7,7 @@ export default class RegisterController {
     return view.render('pages/auth/register')
   }
 
-  async store({ request, response }: HttpContext) {
+  async store({ request, response, auth }: HttpContext) {
     // 1. Grab the data from the request and validate
     const data = await request.validateUsing(registerValidator)
 
@@ -15,9 +15,7 @@ export default class RegisterController {
     const user = await User.create(data)
 
     // 3. Login the user
-    //data['password'] = await Hash.make(data['password'])
-
-    //await user.save()
+    await auth.use('web').login(user)
 
     // 4. Redirect to the home page
     return response.redirect().toRoute('home')
