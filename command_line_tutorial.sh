@@ -207,3 +207,5 @@ node ace repl
 #> node ace make:validator auth
 
 #>  node ace make:controller auth/login show store -s
+
+#> node ace  make:preload rules/unique (and yes to update adonisrc.js)
