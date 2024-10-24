@@ -9,7 +9,7 @@
 
     <form method="POST" action="{{route('auth.logout')}}">
         {{ csrfField() }}
-        <button type="submit" class="text-xs"> Logout {{ auth.user.fullName }}</button>
+        <button type="submit" class="text-xs bg-slate-50"> Logout {{ auth.user.fullName }}</button>
     </form>
 
     @else
