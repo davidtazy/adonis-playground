@@ -9,13 +9,13 @@ export default class LoginController {
 
   async store({ request, response, auth }: HttpContext) {
     // 1. Grab the data from the request and validate
-    const { email, password } = await request.validateUsing(loginValidator)
+    const { email, password, isRememberMe } = await request.validateUsing(loginValidator)
 
     // 2. Verify credentials
     const user = await User.verifyCredentials(email, password)
 
     // 3. Login the user
-    await auth.use('web').login(user)
+    await auth.use('web').login(user, isRememberMe)
 
     // 4. Redirect to the home page
     return response.redirect().toRoute('home')

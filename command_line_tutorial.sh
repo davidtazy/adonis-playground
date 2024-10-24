@@ -213,3 +213,6 @@ node ace repl
 #> node ace make:middleware silent_auth (and select router level)
 
 #> node ace make:controller auth/logout -s
+
+#>  node ace make:migration remember_me_tokens
+#>  node ace migration:run
