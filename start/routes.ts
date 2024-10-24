@@ -7,6 +7,7 @@
 |
 */
 import router from '@adonisjs/core/services/router'
+import { middleware } from './kernel.js'
 
 const WritersController = () => import('#controllers/writers_controller')
 const RegisterController = () => import('#controllers/auth/register_controller')
@@ -34,11 +35,15 @@ router.delete('/redis/:slug', [RedisController, 'destroy']).as('redis.destroy')
 
 router
   .group(() => {
-    router.get('register', [RegisterController, 'show']).as('register.show')
-    router.post('register', [RegisterController, 'store']).as('register.store')
+    router.get('register', [RegisterController, 'show']).as('register.show').use(middleware.guest())
 
-    router.get('login', [LoginController, 'show']).as('login.show')
-    router.post('login', [LoginController, 'store']).as('login.store')
+    router
+      .post('register', [RegisterController, 'store'])
+      .as('register.store')
+      .use(middleware.guest())
+
+    router.get('login', [LoginController, 'show']).as('login.show').use(middleware.guest())
+    router.post('login', [LoginController, 'store']).as('login.store').use(middleware.guest())
   })
   .prefix('/auth')
   .as('auth')
