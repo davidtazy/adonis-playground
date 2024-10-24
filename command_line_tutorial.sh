@@ -209,3 +209,5 @@ node ace repl
 #>  node ace make:controller auth/login show store -s
 
 #> node ace  make:preload rules/unique (and yes to update adonisrc.js)
+
+#> node ace make:middleware silent_auth (and select router level)
