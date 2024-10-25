@@ -8,6 +8,7 @@
 */
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const AdminDashboardController = () => import('#controllers/admin/dashboard_controller')
 const LogoutController = () => import('#controllers/auth/logout_controller')
 
 const WritersController = () => import('#controllers/writers_controller')
@@ -53,11 +54,8 @@ router
 
 router
   .group(() => {
-    router
-      .get('/', (ctx) => {
-        return `you are here ${ctx.auth.user?.fullName} as role id ${ctx.auth.user?.roleId}`
-      })
-      .as('index')
+    router.get('/', [AdminDashboardController, 'handle']).as('dashboard')
   })
-  .prefix('admin')
+  .prefix('/admin')
+  .as('admin')
   .use(middleware.admin())
