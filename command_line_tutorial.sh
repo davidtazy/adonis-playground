@@ -220,3 +220,5 @@ node ace repl
 #> node ace make:middleware admin ❯ Under which stack you want to register the middleware? · named
 
 #> node ace make:controller admin/dashboard -s handle
+
+#> node ace make:controller admin/movies -r

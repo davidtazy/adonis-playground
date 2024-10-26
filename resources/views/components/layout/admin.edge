@@ -20,8 +20,10 @@
 
         @include("partials/nav")
 
-        <div class="flex items-center gap-4 text-xs border-y border-slate-300">
+        <div class="flex items-center gap-4 text-xs py-3 border-y border-slate-300">
             <a href="{{ route('admin.dashboard') }}">Dashboard</a>
+            <a href="{{ route('admin.movies.index') }}">Movies</a>
+
         </div>
 
         {{{ await $slots.main() }}}

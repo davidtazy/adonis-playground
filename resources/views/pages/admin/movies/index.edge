@@ -1,0 +1,42 @@
+@layout.admin()
+
+<h1>Movies</h1>
+
+
+
+<div class="relative overflow-x-auto text-xs">
+    <table class="w-full text-sm text-left rtl:text-right text-slate-500 dark:text-slate-400">
+        <thead class="text-xs text-slate-700 uppercase bg-slate-50">
+            
+            <tr>
+                <th scope="col" class="px-2 py-1.5">Title</th>
+                <th scope="col" class="px-2 py-1.5">Status</th>
+                <th scope="col" class="px-2 py-1.5">Writer/Director</th>
+                <th scope="col" class="px-2 py-1.5">Count</th>
+                <th scope="col" class="px-2 py-1.5"></th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            @each(movie in movies)
+            <tr class="bg-white border-b dark:bg-slate-800 dark:border-slate-700">
+                <td class="px-6 py-4">{{ movie.title }}</td>
+                <td class="px-6 py-4">{{ movie.status.name }}</td>
+                <td class="px-6 py-4">
+                    <div>Writer: {{ movie.writer.fullName }}</div>
+                    <div>Director: {{ movie.director.fullName }}</div>
+                </td>
+                <td class="px-6 py-4">
+                    <div>CastMembers:{{ movie.$extras.castMembers_count }}</div>
+                    <div>CrewMembers:{{ movie.$extras.crewMembers_count }}</div>
+                </td>
+                <td class="px-6 py-4"></td>
+            </tr>
+            @endeach
+        </tbody>
+    </table>
+</div>
+
+@!pagination({paginator:movies})
+
+@end
