@@ -58,7 +58,9 @@ router
   .group(() => {
     router.get('/', [AdminDashboardController, 'handle']).as('dashboard')
 
-    router.get('/movies', [AdminMoviesController, 'index']).as('movies.index')
+    router.resource('movies', AdminMoviesController)
+    //router.get('/movies', [AdminMoviesController, 'index']).as('movies.index')
+    //router.get('/create', [AdminMoviesController, 'create']).as('movie.create')
   })
   .prefix('/admin')
   .as('admin')
