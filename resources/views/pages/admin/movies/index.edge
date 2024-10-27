@@ -39,7 +39,9 @@
                     <div>CastMembers:{{ movie.$extras.castMembers_count }}</div>
                     <div>CrewMembers:{{ movie.$extras.crewMembers_count }}</div>
                 </td>
-                <td class="px-6 py-4"></td>
+                <td class="px-6 py-4">
+                    <a href="{{ route('admin.movies.edit',{id:movie.id})}}">Edit</a>
+                </td>
             </tr>
             @endeach
         </tbody>

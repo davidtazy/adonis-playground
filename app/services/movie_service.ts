@@ -1,3 +1,5 @@
+import Cineast from '#models/cineast'
+import MovieStatus from '#models/movie_status'
 import { Exception } from '@adonisjs/core/exceptions'
 import app from '@adonisjs/core/services/app'
 import { MarkdownFile } from '@dimerapp/markdown'
@@ -24,5 +26,11 @@ export default class MovieService {
         status: 404,
       })
     }
+  }
+
+  static async getFormData() {
+    const statuses = await MovieStatus.query().orderBy('name')
+    const cineasts = await Cineast.query().orderBy('lastName')
+    return { statuses, cineasts }
   }
 }
