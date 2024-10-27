@@ -222,3 +222,5 @@ node ace repl
 #> node ace make:controller admin/dashboard -s handle
 
 #> node ace make:controller admin/movies -r
+
+#> node ace make:controller home index -s
