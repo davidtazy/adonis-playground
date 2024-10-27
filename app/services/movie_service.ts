@@ -1,31 +1,38 @@
 import Cineast from '#models/cineast'
+import Movie from '#models/movie'
 import MovieStatus from '#models/movie_status'
-import { Exception } from '@adonisjs/core/exceptions'
-import app from '@adonisjs/core/services/app'
-import { MarkdownFile } from '@dimerapp/markdown'
-import { readdir, readFile } from 'node:fs/promises'
+
+type MovieSortOption = {
+  id: string
+  text: string
+  field: keyof Movie
+  dir: 'asc' | 'desc' | undefined
+}
 
 export default class MovieService {
-  static async getSlugs(): Promise<string[]> {
-    const files = await readdir(app.makeURL('resources/movies'))
+  static sortOptions: MovieSortOption[] = [
+    { id: 'title_asc', text: 'Title(asc)', field: 'title', dir: 'asc' },
+    { id: 'title_desc', text: 'Title(desc)', field: 'title', dir: 'desc' },
+    { id: 'releasedAt_desc', text: 'Released At(desc)', field: 'releasedAt', dir: 'desc' },
+    { id: 'releasedAt_asc', text: 'Released At(asc)', field: 'releasedAt', dir: 'asc' },
+  ]
 
-    return files.map((file) => file.replace('.md', ''))
-  }
+  static async getFiltered(filters: Record<string, any>) {
+    const sort =
+      this.sortOptions.find((option) => option.id === filters.sort) || this.sortOptions[0]
 
-  static async read(slug: string): Promise<MarkdownFile> {
-    try {
-      const filename = `${slug}.md`
-      const url = app.makeURL(`resources/movies/${filename}`)
-      const file = await readFile(url, 'utf8')
-      const md = new MarkdownFile(file)
-      await md.process()
-      return md
-    } catch (error) {
-      throw new Exception(`could not find movie called ${slug}`, {
-        code: 'E_NOT_FOUND',
-        status: 404,
+    return Movie.query()
+      .if(filters.search, (query) => {
+        query.whereILike('title', `%${filters.search}%`)
       })
-    }
+      .if(filters.status, (query) => {
+        query.where('statusId', filters.status)
+      })
+      .preload('director')
+      .preload('writer')
+      .preload('status')
+      .orderBy(sort.field, sort.dir)
+      .limit(15)
   }
 
   static async getFormData() {

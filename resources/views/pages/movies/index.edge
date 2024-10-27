@@ -10,17 +10,25 @@
            label:'Title Search',
            name:'search',
            type: 'search',
-           value:filter.search
+           value:filters.search
         }) 
 
         @form.input({type:'select',label:'Status',name:'status'}) 
             <option value="">All</option>
             @each(status in movieStatuses)
-            <option value="{{status.id}}" {{html.attrs({selected:status.id == filter.status})}}>
+            <option value="{{status.id}}" {{html.attrs({selected:status.id == filters.status})}}>
                 {{status.name}}
             </option>
             @endeach
         @end
+
+        @form.input({type:'select',label:'Sort',name:'sort'}) 
+        @each(item in movieSortOptions)
+        <option value="{{item.id}}" {{html.attrs({selected:item.id == filters.sort})}}>
+            {{item.text}}
+        </option>
+        @endeach
+    @end
 
         @button({type:'submit'})
           Search
