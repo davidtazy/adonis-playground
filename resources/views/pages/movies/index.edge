@@ -4,6 +4,22 @@
 <meta name="description" content="Browse and search our awesome movie list">
 @end
 
+<form method="GET" action="{{route('movies.index')}}">
+    <div class="flex items-end gap-3 pt-4">
+        @!form.input({
+           label:'Title Search',
+           name:'search',
+           type: 'search',
+           value:filter.search
+        }) 
+
+        @button({type:'submit'})
+          Search
+        @end
+          
+    </div>
+</form>
+
 
 <div class="max-w-3xl mx-auto mt-6">
 
