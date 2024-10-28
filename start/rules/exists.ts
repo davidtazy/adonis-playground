@@ -6,12 +6,20 @@ import { VineNumber } from '@vinejs/vine'
 type Options = {
   table: string
   column: string
+  accept_all_if_zero: true | undefined
 }
 
 async function isExists(value: unknown, options: Options, field: FieldContext) {
   if (typeof value !== 'string' && typeof value !== 'number') {
     return
   }
+
+  if (options.accept_all_if_zero === true) {
+    if (value === 0) {
+      return
+    }
+  }
+
   const result = await db
     .from(options.table)
     .select(options.column)
