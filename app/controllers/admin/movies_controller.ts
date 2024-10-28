@@ -8,12 +8,15 @@ export default class MoviesController {
   /**
    * Display a list of resource
    */
-  async index({ request, view }: HttpContext) {
+  async index({ request, view, auth }: HttpContext) {
     const page = request.input('page', 1)
     const movies = await Movie.query()
       .preload('status')
       .preload('director')
       .preload('writer')
+      .if(auth.user, (query) =>
+        query.preload('watchlist', (watchlist) => watchlist.where('userId', auth.user!.id))
+      )
       .withCount('castMembers')
       .withCount('crewMembers')
       .orderBy('updatedAt', 'desc')

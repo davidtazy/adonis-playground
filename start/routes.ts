@@ -8,6 +8,7 @@
 */
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const WatchlistsController = () => import('#controllers/watchlists_controller')
 const HomeController = () => import('#controllers/home_controller')
 const AdminDashboardController = () => import('#controllers/admin/dashboard_controller')
 const AdminMoviesController = () => import('#controllers/admin/movies_controller')
@@ -29,6 +30,11 @@ router
   .get('/movies/:slug', [MoviesController, 'show'])
   .as('movies.show')
   .where('slug', router.matchers.slug())
+
+router
+  .post('/watchlists/:movieId/toggle', [WatchlistsController, 'toggle'])
+  .as('watchlists.toggle')
+  .use(middleware.auth())
 
 router.get('/directors/:id', [DirectorsController, 'show']).as('directors.show')
 router.get('/directors', [DirectorsController, 'index']).as('directors.index')
