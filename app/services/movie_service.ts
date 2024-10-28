@@ -2,6 +2,7 @@ import Cineast from '#models/cineast'
 import Movie from '#models/movie'
 import MovieStatus from '#models/movie_status'
 import { movieFilterValidator } from '#validators/movies_filter'
+import router from '@adonisjs/core/services/router'
 import { Infer } from '@vinejs/vine/types'
 
 type MovieSortOption = {
@@ -21,7 +22,7 @@ export default class MovieService {
     { id: 'writer_asc', text: 'Writer Name (asc)', field: 'cineasts.last_name', dir: 'asc' },
   ]
 
-  static async getFiltered(filters: Infer<typeof movieFilterValidator>) {
+  static async getFiltered(filters: Infer<typeof movieFilterValidator>, page: number) {
     const sort =
       this.sortOptions.find((option) => option.id === filters.sort) || this.sortOptions[0]
 
@@ -40,7 +41,7 @@ export default class MovieService {
       .preload('writer')
       .preload('status')
       .orderBy(sort.field, sort.dir)
-      .limit(15)
+      .paginate(page, 15)
   }
 
   static async getFormData() {
