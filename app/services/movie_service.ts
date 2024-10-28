@@ -23,9 +23,8 @@ export default class MovieService {
     { id: 'writer_asc', text: 'Writer Name (asc)', field: 'cineasts.last_name', dir: 'asc' },
   ]
 
-  static async getFiltered(
+  static getFiltered(
     filters: Infer<typeof movieFilterValidator>,
-    page: number,
     user: User | undefined = undefined
   ) {
     const sort =
@@ -48,7 +47,6 @@ export default class MovieService {
       .preload('writer')
       .preload('status')
       .orderBy(sort.field, sort.dir)
-      .paginate(page, 15)
   }
 
   static async getFormData() {

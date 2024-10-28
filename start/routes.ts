@@ -32,6 +32,11 @@ router
   .where('slug', router.matchers.slug())
 
 router
+  .get('/watchlist', [WatchlistsController, 'index'])
+  .as('watchlists.index')
+  .use(middleware.auth())
+
+router
   .post('/watchlists/:movieId/toggle', [WatchlistsController, 'toggle'])
   .as('watchlists.toggle')
   .use(middleware.auth())

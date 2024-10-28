@@ -12,7 +12,7 @@ export default class MoviesController {
 
     const page = request.input('page', 1) as number
 
-    const movies = await MovieService.getFiltered(filters, page, auth.user)
+    const movies = await MovieService.getFiltered(filters, auth.user).paginate(page, 15)
     const movieStatuses = await MovieStatus.query().orderBy('name').select('id', 'name')
     const movieSortOptions = MovieService.sortOptions
     const qs = querystring.stringify(filters)

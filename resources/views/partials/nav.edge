@@ -8,21 +8,25 @@
 
     @if(auth.user)
 
-    @if (auth.user.roleId === Roles.ADMIN)
-    <a href={{ route('admin.dashboard')}} class="text-xs">Admin</a>
-    @endif
+    <div class="flex items-center gap-3 text-xs">
+        <a href="{{route('watchlists.index')}}" >Watchlist</a>
 
-    <form method="POST" action="{{route('auth.logout')}}">
-        {{ csrfField() }}
-        <button type="submit" class="text-xs bg-slate-50"> Logout {{ auth.user.fullName }}</button>
-    </form>
+        @if (auth.user.roleId === Roles.ADMIN)
+        <a href={{ route('admin.dashboard')}} >Admin</a>
+        @endif
 
-    @else
-
-    <div>
-        <a href={{ route('auth.login.show')}}>Login</a>
-        <a href={{ route('auth.register.show')}}>Register</a>
+        <form method="POST" action="{{route('auth.logout')}}">
+            {{ csrfField() }}
+            <button type="submit" class="bg-slate-50"> Logout {{ auth.user.fullName }}</button>
+        </form>
     </div>
-    @endif
+        @else
+
+        <div>
+            <a href={{ route('auth.login.show')}}>Login</a>
+            <a href={{ route('auth.register.show')}}>Register</a>
+        </div>
+        @endif
+  
 
 </nav>
