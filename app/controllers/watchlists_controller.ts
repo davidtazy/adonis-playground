@@ -5,7 +5,6 @@ import { watchlistFilterValidator } from '#validators/movies_filter'
 import type { HttpContext } from '@adonisjs/core/http'
 import router from '@adonisjs/core/services/router'
 import { DateTime } from 'luxon'
-import querystring from 'node:querystring'
 
 export default class WatchlistsController {
   async index({ request, view, auth }: HttpContext) {
@@ -24,16 +23,15 @@ export default class WatchlistsController {
 
     const movieStatuses = await MovieStatus.query().orderBy('name').select('id', 'name')
     const movieSortOptions = MovieService.sortOptions
-    const qs = querystring.stringify(filters)
 
     movies.baseUrl(router.makeUrl('watchlists.index'))
+    movies.queryString(filters)
 
     return view.render('pages/watchlist', {
       movies,
       movieStatuses,
       movieSortOptions,
       filters,
-      qs,
     })
   }
 
