@@ -8,6 +8,7 @@
 */
 import router from '@adonisjs/core/services/router'
 import { middleware } from './kernel.js'
+const ProfilesController = () => import('#controllers/profiles_controller')
 const WatchlistsController = () => import('#controllers/watchlists_controller')
 const HomeController = () => import('#controllers/home_controller')
 const AdminDashboardController = () => import('#controllers/admin/dashboard_controller')
@@ -53,6 +54,8 @@ router.get('/writers', [WritersController, 'index']).as('writers.index')
 // flush is first because it would be treated as a valid slug (route are tested in order)
 router.delete('/redis/flush', [RedisController, 'flush']).as('redis.flush')
 router.delete('/redis/:slug', [RedisController, 'destroy']).as('redis.destroy')
+
+router.get('/profile/edit', [ProfilesController, 'edit']).as('profiles.edit').use(middleware.auth())
 
 router
   .group(() => {

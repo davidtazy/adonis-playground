@@ -230,3 +230,6 @@ node ace repl
 
 #> node ace migration:rollback
 #> node ace migration:run
+
+#> node ace make:migration add_missing_user_profiles
+#> node ace migration:run
