@@ -4,7 +4,7 @@
 <meta name="description" content="Movies in your watchlist">
 @end
 
-<form method="GET" action="{{route('watchlists.index')}}">
+<form method="GET" action="{{ route('watchlists.index')   }}">
     <div class="flex items-end gap-3 pt-4">
         @!form.input({
            label:'Title Search',
@@ -21,6 +21,13 @@
             </option>
             @endeach
         @end
+
+        @form.input({type:'select',label:'Watched',name:'watched'}) 
+            <option value="all" {{html.attrs({ selected:'all'== filters.watched}) }} >All</option>
+            <option value="watched" {{html.attrs({ selected:'watched'== filters.watched}) }} >Watched</option>
+            <option value="unwatched" {{html.attrs({ selected:'unwatched'== filters.watched}) }} >Not Watched</option>
+        @end
+
 
         @form.input({type:'select',label:'Sort',name:'sort'}) 
         @each(item in movieSortOptions)
