@@ -16,7 +16,7 @@
         @endif
 
 
-        <a href="{{route('profiles.edit')}}" >Edit Profile</a>
+        <a href="{{ route('profiles.edit') }}" >Edit Profile</a>
 
         <form method="POST" action="{{route('auth.logout')}}">
             {{ csrfField() }}
