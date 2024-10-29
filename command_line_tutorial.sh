@@ -227,3 +227,6 @@ node ace repl
 
 #> node ace make:model watchlist -mc  # make model, migration and controller
 #> node ace migration:run
+
+#> node ace migration:rollback
+#> node ace migration:run
