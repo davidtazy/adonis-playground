@@ -26,6 +26,8 @@ const DirectorsController = () => import('#controllers/directors_controller')
 
 router.get('/avatars/:filename', [AvatarsController, 'show']).as('avatars.show')
 
+router.get('/:username', [ProfilesController, 'at']).where('username', /^@/).as('profiles.at')
+
 router.get('/', [HomeController, 'index']).as('home')
 
 router.get('/movies', [MoviesController, 'index']).as('movies.index')
@@ -56,6 +58,7 @@ router.get('/writers', [WritersController, 'index']).as('writers.index')
 
 router.get('/profile/edit', [ProfilesController, 'edit']).as('profiles.edit').use(middleware.auth())
 router.put('/profiles', [ProfilesController, 'update']).as('profiles.update').use(middleware.auth())
+router.get('/profiles/:id', [ProfilesController, 'show']).as('profiles.show')
 
 // flush is first because it would be treated as a valid slug (route are tested in order)
 router.delete('/redis/flush', [RedisController, 'flush']).as('redis.flush')

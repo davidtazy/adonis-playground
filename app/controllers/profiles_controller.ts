@@ -1,3 +1,4 @@
+import User from '#models/user'
 import ProfileService from '#services/profile_services'
 import { profileUpdateValidator } from '#validators/profile'
 import { inject } from '@adonisjs/core'
@@ -9,6 +10,23 @@ import { unlink } from 'node:fs/promises'
 @inject()
 export default class ProfilesController {
   constructor(protected profileService: ProfileService) {}
+
+  async at({ view, params }: HttpContext) {
+    const id = params.username.replace('@', '')
+    const user = await User.findOrFail(id)
+
+    await user.load('profile')
+
+    return view.render('pages/profiles/show', { user })
+  }
+
+  async show({ params, view }: HttpContext) {
+    const user = await User.findOrFail(params.id)
+
+    await user.load('profile')
+
+    return view.render('pages/profiles/show', { user })
+  }
 
   async edit({ view }: HttpContext) {
     const profile = await this.profileService.find()

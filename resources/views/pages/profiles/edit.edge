@@ -22,6 +22,7 @@
         <p role="alert" class="text-red-500 bg-red-50 p-3  rounded text-xs">{{$message}}</p>
         @end
 
+
         <input type="hidden" name="avatarUrl" value="{{ auth.user.avatarUrl  || '' }}" />
 
         @if(auth.user.avatarUrl)
