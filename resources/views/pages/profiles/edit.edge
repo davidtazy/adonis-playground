@@ -9,13 +9,41 @@
 
     @card( {class:'max-w-md'})
 
-    <form method="POST" action="{{ route('profiles.update',{},{qs: {_method:'PUT'} } ) }}" class="flex flex-col gap-4 ">
-        {{ csrfField()}}
+    <form 
+       id="editForm"
+       method="POST" 
+       enctype="multipart/form-data"
+       action="{{ route('profiles.update',{},{qs: {_method:'PUT'} } ) }}" 
+       class="flex flex-col gap-4 ">
+       
+       {{ csrfField()}}
 
         @error('form')
         <p role="alert" class="text-red-500 bg-red-50 p-3  rounded text-xs">{{$message}}</p>
         @end
 
+        <input type="hidden" name="avatarUrl" value="{{ auth.user.avatarUrl  || '' }}" />
+
+        @if(auth.user.avatarUrl)
+        <div class="relative w-1/3 mx-auto">
+            <img src="{{auth.user.avatarUrl}}" class="'w-full" />
+            <button 
+               type='button'
+               class="absolute top-0 right-0 p-3 rounded-full"
+               onclick="(document.forms.editForm.avatarUrl.value= '') || this.parentElement.remove()"> 
+               &times;
+            </button>
+        </div>
+        @endif
+
+        @!form.input({
+            type:'file',
+            label: "Avatar",
+            name: 'avatar',
+        }) 
+
+       
+            
 
         @!form.input({
         label:"Full Name",
