@@ -42,10 +42,10 @@ export default class Cineast extends BaseModel {
   @manyToMany(() => Movie, {
     pivotTable: 'crew_movies',
     pivotTimestamps: true,
-    localKey: 'id', // actual default lucid value, could be removed
-    relatedKey: 'id', // actual default lucid value, could be removed
-    pivotForeignKey: 'movie_id', // actual default lucid value, could be removed
-    pivotRelatedForeignKey: 'cineast_id', // actual default lucid value, could be removed
+    //localKey: 'id', // actual default lucid value, could be removed
+    //relatedKey: 'id', // actual default lucid value, could be removed
+    //pivotForeignKey: 'movie_id', // actual default lucid value, could be removed
+    //pivotRelatedForeignKey: 'cineast_id', // actual default lucid value, could be removed
   })
   declare crewMovies: ManyToMany<typeof Movie>
 

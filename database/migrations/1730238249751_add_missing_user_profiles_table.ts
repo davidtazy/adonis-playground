@@ -6,20 +6,18 @@ export default class extends BaseSchema {
   protected tableName = 'add_missing_user_profiles'
 
   async up() {
-    this.schema.createTable(this.tableName, (table) => {
-      //create profiles for any users missing one
+    //create profiles for any users missing one
 
-      this.defer(async (db) => {
-        const users = await User.query()
-          .whereDoesntHave('profile', (query) => query)
-          .select('id')
+    this.defer(async (db) => {
+      const users = await User.query()
+        .whereDoesntHave('profile', (query) => query)
+        .select('id')
 
-        console.log(`${users.length} users missing a profiles`)
+      console.log(`${users.length} users missing a profiles`)
 
-        const profiles = users.map((user) => ({ userId: user.id }))
+      const profiles = users.map((user) => ({ userId: user.id }))
 
-        await Profile.createMany(profiles)
-      })
+      await Profile.createMany(profiles)
     })
   }
 

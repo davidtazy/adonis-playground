@@ -6,7 +6,7 @@ import { movieFilterValidator } from '#validators/movies_filter'
 import { MultipartFile } from '@adonisjs/core/bodyparser'
 import { cuid } from '@adonisjs/core/helpers'
 import app from '@adonisjs/core/services/app'
-import router from '@adonisjs/core/services/router'
+import { movieValidator } from '#validators/movie'
 import { Infer } from '@vinejs/vine/types'
 
 type MovieSortOption = {
@@ -64,5 +64,29 @@ export default class MovieService {
       name: filename,
     })
     return `posters/${filename}`
+  }
+
+  static async syncCastAndCrew(
+    movie: Movie,
+    crew: Infer<typeof movieValidator>['crew'],
+    cast: Infer<typeof movieValidator>['cast']
+  ) {
+    const crewMembers = crew?.reduce<Record<number, { title: string; sort_order: number }>>(
+      (acc, row, index) => {
+        acc[row.id] = { title: row.title, sort_order: index }
+        return acc
+      },
+      {}
+    )
+
+    const castMembers = cast?.reduce<
+      Record<number, { character_name: string; sort_order: number }>
+    >((acc, row, index) => {
+      acc[row.id] = { character_name: row.character_name, sort_order: index }
+      return acc
+    }, {})
+
+    await movie.related('crewMembers').sync(crewMembers ?? [])
+    await movie.related('castMembers').sync(castMembers ?? [])
   }
 }
